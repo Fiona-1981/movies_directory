@@ -5,22 +5,23 @@ _Copy this recipe template to design and create a database table from a specific
 ## 1. Extract nouns from the user stories or specification
 
 ```
-# EXAMPLE USER STORY:
-# (analyse only the relevant part - here the final line).
+As a person who loves movies,
+So I can list all my favourite movies
+I want to see a list of movies' titles.
 
-As a music lover,
-So I can organise my records,
-I want to keep a list of albums' titles.
+As a person who loves movies,
+So I can list all my favourite movies
+I want to see a list of movies' genres.
 
-As a music lover,
-So I can organise my records,
-I want to keep a list of albums' release year.
+As a person who loves movies,
+So I can list all my favourite movies
+I want to see a list of movies' release year.
 ```
 
 ```
 Nouns:
 
-album, title, release year
+movie, title, genre, release_year
 ```
 
 ## 2. Infer the Table Name and Columns
@@ -29,11 +30,11 @@ Put the different nouns in this table. Replace the example with your own nouns.
 
 | Record                | Properties          |
 | --------------------- | ------------------  |
-| album                 | title, release year
+| movie                 | title, genre, release year
 
-Name of the table (always plural): `albums` 
+Name of the table (always plural): `movies` 
 
-Column names: `title`, `release_year`
+Column names: `title`, `genre`, `release_year`
 
 ## 3. Decide the column types.
 
@@ -48,6 +49,7 @@ Remember to **always** have the primary key `id` as a first column. Its type wil
 
 id: SERIAL
 title: text
+genre: text
 release_year: int
 ```
 
@@ -55,13 +57,14 @@ release_year: int
 
 ```sql
 -- EXAMPLE
--- file: albums_table.sql
+-- file: movies_table.sql
 
 -- Replace the table name, columm names and types.
 
-CREATE TABLE albums (
+CREATE TABLE movies (
   id SERIAL PRIMARY KEY,
   title text,
+  genre text,
   release_year int
 );
 ```
@@ -69,7 +72,7 @@ CREATE TABLE albums (
 ## 5. Create the table.
 
 ```bash
-psql -h 127.0.0.1 database_name < albums_table.sql
+psql -h 127.0.0.1 movies_directory < movies_table.sql
 ```
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
